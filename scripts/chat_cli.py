@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 """Interactive chat CLI for querying the MIA index via a RAG service."""
 
+import sys
+from pathlib import Path as _Path
+sys.path.insert(0, str(_Path(__file__).resolve().parent.parent))
+
 import argparse
 import asyncio
 import os

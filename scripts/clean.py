@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 """CLI wrapper for mia.cleaner.process_corpus."""
 
+import sys
+from pathlib import Path as _Path
+sys.path.insert(0, str(_Path(__file__).resolve().parent.parent))
+
 import argparse
 import json
 from pathlib import Path
