@@ -39,9 +39,14 @@ FRONTEND_PID=$!
 echo ""
 echo "==================================="
 echo "  Marx AI 已启动"
-echo "  前端: http://localhost:3000"
-echo "  API:  http://localhost:${PORT}/docs"
+echo "  本地访问: http://localhost:3000"
+echo "  网络访问: http://$(hostname -I 2>/dev/null | awk '{print $1}' || echo 'YOUR_IP'):3000"
+echo "  API 文档: http://localhost:${PORT}/docs"
 echo "  按 Ctrl+C 停止所有服务"
+echo ""
+echo "  如需从其他设备访问，设置前端环境变量："
+echo "    NEXT_PUBLIC_API_URL=http://$(hostname -I 2>/dev/null | awk '{print $1}' || echo 'YOUR_IP'):${PORT}"
+echo "    在 web/.env.local 中修改"
 echo "==================================="
 
 cleanup() {

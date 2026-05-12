@@ -28,7 +28,7 @@ app = FastAPI(title="Marx AI", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -47,7 +47,7 @@ async def health():
 if __name__ == "__main__":
     import uvicorn
     p = argparse.ArgumentParser()
-    p.add_argument("--host", default="127.0.0.1")
+    p.add_argument("--host", default="0.0.0.0")
     p.add_argument("--port", type=int, default=8000)
     p.add_argument("--config", default="config.yaml")
     args = p.parse_args()
