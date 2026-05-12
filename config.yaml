@@ -1,0 +1,28 @@
+# config.yaml
+llm:
+  provider: deepseek
+  api_key: ${DEEPSEEK_API_KEY}
+  base_url: https://api.deepseek.com
+  model: deepseek-chat
+  temperature: 0.2
+  max_tokens: 1200
+
+embedding:
+  model: BAAI/bge-m3
+  device: auto
+
+index:
+  dir: data/mia_index_5000
+  topk: 5
+  max_candidates: 50
+
+chunking:
+  size: 700
+  overlap: 100
+
+server:
+  host: 127.0.0.1
+  port: 8000
+
+sessions:
+  max_history_turns: 20
