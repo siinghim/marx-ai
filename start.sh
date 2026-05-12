@@ -8,7 +8,8 @@ PORT="${1:-${BACKEND_PORT:-8000}}"
 
 # 环境设置
 unset ALL_PROXY all_proxy
-export DEEPSEEK_API_KEY="${DEEPSEEK_API_KEY:-sk-da8f7c9812754645ae7e83971556e458}"
+# API Key 通过前端设置面板配置（浏览器 localStorage），无需在此硬编码
+export DEEPSEEK_API_KEY="${DEEPSEEK_API_KEY:-}"
 
 echo "=== 启动 Marx AI ==="
 
