@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+*.pyo
+node_modules/
+.next/
+data/sessions.db
+.env
+.env.local
