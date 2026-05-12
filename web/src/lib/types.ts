@@ -23,3 +23,9 @@ export interface Source {
   date_hint: string;
   score: number;
 }
+
+export interface LLMConfig {
+  apiKey: string;
+  baseUrl: string;
+  model: string;
+}

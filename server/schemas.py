@@ -5,6 +5,9 @@ from pydantic import BaseModel, Field
 class ChatRequest(BaseModel):
     session_id: str
     message: str
+    api_key: str | None = None
+    base_url: str | None = None
+    model: str | None = None
 
 
 class SearchRequest(BaseModel):

@@ -3,7 +3,7 @@ import { useState, useRef, useCallback } from "react";
 import { Message, Source } from "@/lib/types";
 import * as api from "@/lib/api";
 
-export function useChat(sessionId: string | null) {
+export function useChat(sessionId: string | null, llmConfig?: import("@/lib/types").LLMConfig | null) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [streaming, setStreaming] = useState(false);
   const [streamingContent, setStreamingContent] = useState("");
@@ -47,8 +47,9 @@ export function useChat(sessionId: string | null) {
         setStreamingContent("");
       },
       (err) => { setError(err); setStreaming(false); },
+      llmConfig,
     );
-  }, [sessionId, streaming]);
+  }, [sessionId, streaming, llmConfig]);
 
   const stop = useCallback(async () => {
     abortRef.current?.abort();

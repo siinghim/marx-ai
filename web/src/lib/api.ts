@@ -1,6 +1,16 @@
-import { Session, Message, Source } from "./types";
+import { Session, Message, Source, LLMConfig } from "./types";
 
 const BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+
+function chatBody(sessionId: string, message: string, llmConfig?: LLMConfig | null) {
+  const body: Record<string, string> = { session_id: sessionId, message };
+  if (llmConfig?.apiKey) {
+    body.api_key = llmConfig.apiKey;
+    if (llmConfig.baseUrl) body.base_url = llmConfig.baseUrl;
+    if (llmConfig.model) body.model = llmConfig.model;
+  }
+  return body;
+}
 
 export async function createSession(title: string = "新对话"): Promise<Session> {
   const res = await fetch(`${BASE}/api/sessions`, {
@@ -35,13 +45,14 @@ export function streamChat(
   onSources: (sources: Source[]) => void,
   onDone: () => void,
   onError: (err: string) => void,
+  llmConfig?: LLMConfig | null,
 ): AbortController {
   const controller = new AbortController();
 
   fetch(`${BASE}/api/chat`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ session_id: sessionId, message }),
+    body: JSON.stringify(chatBody(sessionId, message, llmConfig)),
     signal: controller.signal,
   })
     .then(async (res) => {

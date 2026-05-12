@@ -4,10 +4,13 @@ import { useChat } from "@/hooks/useChat";
 import MessageBubble from "./MessageBubble";
 import MessageInput from "./MessageInput";
 
-interface Props { sessionId: string | null; }
+interface Props {
+  sessionId: string | null;
+  llmConfig?: import("@/lib/types").LLMConfig | null;
+}
 
-export default function ChatPanel({ sessionId }: Props) {
-  const { messages, streaming, streamingContent, streamingSources, error, send, stop, loadHistory } = useChat(sessionId);
+export default function ChatPanel({ sessionId, llmConfig }: Props) {
+  const { messages, streaming, streamingContent, streamingSources, error, send, stop, loadHistory } = useChat(sessionId, llmConfig);
   const bottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => { loadHistory(); }, [sessionId, loadHistory]);

@@ -17,7 +17,10 @@ async def chat(req: ChatRequest):
     if _service is None:
         raise HTTPException(503, "Service not ready")
     return StreamingResponse(
-        _service.stream_chat(req.session_id, req.message),
+        _service.stream_chat(
+            req.session_id, req.message,
+            api_key=req.api_key, base_url=req.base_url, model=req.model,
+        ),
         media_type="text/event-stream",
         headers={
             "Cache-Control": "no-cache",
