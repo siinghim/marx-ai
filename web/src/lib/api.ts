@@ -1,6 +1,6 @@
 import { Session, Message, Source } from "./types";
 
-const BASE = "http://localhost:8000";
+const BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
 export async function createSession(title: string = "新对话"): Promise<Session> {
   const res = await fetch(`${BASE}/api/sessions`, {
