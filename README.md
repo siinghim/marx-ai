@@ -89,6 +89,14 @@ spectre/
 
 ## 致谢
 
+本项目的全部文献数据来源于 **[中文马克思主义文库](https://www.marxists.org/chinese/)**（Marxists Internet Archive Chinese Section）。
+
+中文马克思主义文库由来自世界各地的志愿者共同建设与维护，数十年如一日地翻译、校对、整理马克思主义经典著作和相关文献，为中文世界的理论研究者和学习者提供了无可替代的宝贵资源。本项目的诞生，离不开这些志愿者的无私奉献与辛勤付出。
+
+谨向中文马克思主义文库及所有志愿者致以最诚挚的敬意和感谢。
+
+---
+
 "A spectre is haunting the internet — the spectre of Marx."
 
 —— Karl Marx & Friedrich Engels, *Manifesto of the Communist Party*, 1848
