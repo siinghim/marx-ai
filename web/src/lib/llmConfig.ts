@@ -7,6 +7,8 @@ export interface LLMConfig {
   temperature: number;
   maxTokens: number;
   topP: number;
+  topk: number;
+  maxCandidates: number;
 }
 
 const STORAGE_KEY = "marx_llm_config";
@@ -18,6 +20,8 @@ const DEFAULTS: LLMConfig = {
   temperature: 0.2,
   maxTokens: 1200,
   topP: 0.9,
+  topk: 20,
+  maxCandidates: 200,
 };
 
 export function loadConfig(): LLMConfig {

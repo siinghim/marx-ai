@@ -31,4 +31,6 @@ export interface LLMConfig {
   temperature: number;
   maxTokens: number;
   topP: number;
+  topk: number;
+  maxCandidates: number;
 }

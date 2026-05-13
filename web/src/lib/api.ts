@@ -11,6 +11,8 @@ function chatBody(sessionId: string, message: string, llmConfig?: LLMConfig | nu
     if (llmConfig.temperature !== undefined) body.temperature = llmConfig.temperature;
     if (llmConfig.maxTokens !== undefined) body.max_tokens = llmConfig.maxTokens;
     if (llmConfig.topP !== undefined) body.top_p = llmConfig.topP;
+    if (llmConfig.topk !== undefined) body.topk = llmConfig.topk;
+    if (llmConfig.maxCandidates !== undefined) body.max_candidates = llmConfig.maxCandidates;
   }
   return body;
 }

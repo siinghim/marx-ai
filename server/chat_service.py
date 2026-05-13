@@ -47,13 +47,17 @@ class ChatService:
                           model: str | None = None,
                           temperature: float | None = None,
                           max_tokens: int | None = None,
-                          top_p: float | None = None):
+                          top_p: float | None = None,
+                          topk: int | None = None,
+                          max_candidates: int | None = None):
         yield 'data: {"type": "status", "status": "retrieving"}\n\n'
 
+        _topk = topk if topk is not None else self.config.index.topk
+        _max_candidates = max_candidates if max_candidates is not None else self.config.index.max_candidates
         results = self.rag.retriever.search(
             query=message,
-            topk=self.config.index.topk,
-            max_candidates=self.config.index.max_candidates,
+            topk=_topk,
+            max_candidates=_max_candidates,
         )
         context = build_context(results)
         sources = format_sources(results)

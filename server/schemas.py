@@ -11,6 +11,8 @@ class ChatRequest(BaseModel):
     temperature: float | None = None
     max_tokens: int | None = None
     top_p: float | None = None
+    topk: int | None = None
+    max_candidates: int | None = None
 
 
 class SearchRequest(BaseModel):
