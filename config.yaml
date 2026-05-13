@@ -13,8 +13,8 @@ embedding:
 
 index:
   dir: data/mia_index_5000
-  topk: 10
-  max_candidates: 80
+  topk: 20
+  max_candidates: 200
 
 chunking:
   size: 700
