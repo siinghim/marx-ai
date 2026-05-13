@@ -28,6 +28,16 @@
 - Node.js 24+
 - CUDA (可选，加速 embedding)
 
+### 安装
+
+```bash
+# Python 依赖
+pip install -r requirements.txt
+
+# 前端依赖
+cd web && npm install
+```
+
 ### 启动
 
 ```bash
