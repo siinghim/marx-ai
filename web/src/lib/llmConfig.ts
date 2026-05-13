@@ -4,6 +4,9 @@ export interface LLMConfig {
   apiKey: string;
   baseUrl: string;
   model: string;
+  temperature: number;
+  maxTokens: number;
+  topP: number;
 }
 
 const STORAGE_KEY = "marx_llm_config";
@@ -12,6 +15,9 @@ const DEFAULTS: LLMConfig = {
   apiKey: "",
   baseUrl: "https://api.deepseek.com",
   model: "deepseek-chat",
+  temperature: 0.2,
+  maxTokens: 1200,
+  topP: 0.9,
 };
 
 export function loadConfig(): LLMConfig {

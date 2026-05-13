@@ -28,21 +28,26 @@ class ChatService:
         if ev:
             ev.set()
 
-    def _get_llm_client(self, api_key: str | None, base_url: str | None, model: str | None) -> LLMClient:
+    def _get_llm_client(self, api_key: str | None, base_url: str | None, model: str | None,
+                         temperature: float | None = None, max_tokens: int | None = None,
+                         top_p: float | None = None) -> LLMClient:
         if api_key:
             cfg = LLMConfig(
                 api_key=api_key,
                 base_url=base_url or self.config.llm.base_url,
                 model=model or self.config.llm.model,
-                temperature=self.config.llm.temperature,
-                max_tokens=self.config.llm.max_tokens,
+                temperature=temperature if temperature is not None else self.config.llm.temperature,
+                max_tokens=max_tokens if max_tokens is not None else self.config.llm.max_tokens,
             )
             return LLMClient(cfg)
         return self.rag.llm
 
     async def stream_chat(self, session_id: str, message: str,
                           api_key: str | None = None, base_url: str | None = None,
-                          model: str | None = None):
+                          model: str | None = None,
+                          temperature: float | None = None,
+                          max_tokens: int | None = None,
+                          top_p: float | None = None):
         yield 'data: {"type": "status", "status": "retrieving"}\n\n'
 
         results = self.rag.retriever.search(
@@ -67,7 +72,7 @@ class ChatService:
             title = message[:30] + ("..." if len(message) > 30 else "")
             await session_store.update_session_title(session_id, title)
 
-        llm = self._get_llm_client(api_key, base_url, model)
+        llm = self._get_llm_client(api_key, base_url, model, temperature, max_tokens, top_p)
 
         stop_ev = self.get_stop_event(session_id)
         stop_ev.clear()

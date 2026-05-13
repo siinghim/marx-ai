@@ -3,11 +3,14 @@ import { Session, Message, Source, LLMConfig } from "./types";
 const BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
 function chatBody(sessionId: string, message: string, llmConfig?: LLMConfig | null) {
-  const body: Record<string, string> = { session_id: sessionId, message };
+  const body: Record<string, string | number> = { session_id: sessionId, message };
   if (llmConfig?.apiKey) {
     body.api_key = llmConfig.apiKey;
     if (llmConfig.baseUrl) body.base_url = llmConfig.baseUrl;
     if (llmConfig.model) body.model = llmConfig.model;
+    if (llmConfig.temperature !== undefined) body.temperature = llmConfig.temperature;
+    if (llmConfig.maxTokens !== undefined) body.max_tokens = llmConfig.maxTokens;
+    if (llmConfig.topP !== undefined) body.top_p = llmConfig.topP;
   }
   return body;
 }

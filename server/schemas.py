@@ -8,6 +8,9 @@ class ChatRequest(BaseModel):
     api_key: str | None = None
     base_url: str | None = None
     model: str | None = None
+    temperature: float | None = None
+    max_tokens: int | None = None
+    top_p: float | None = None
 
 
 class SearchRequest(BaseModel):

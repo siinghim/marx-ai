@@ -20,6 +20,7 @@ async def chat(req: ChatRequest):
         _service.stream_chat(
             req.session_id, req.message,
             api_key=req.api_key, base_url=req.base_url, model=req.model,
+            temperature=req.temperature, max_tokens=req.max_tokens, top_p=req.top_p,
         ),
         media_type="text/event-stream",
         headers={
