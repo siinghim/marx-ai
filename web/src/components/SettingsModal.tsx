@@ -9,14 +9,29 @@ interface Props {
   onSave: (config: LLMConfig) => void;
 }
 
+const DEFAULTS: LLMConfig = {
+  apiKey: "",
+  baseUrl: "https://api.deepseek.com",
+  model: "deepseek-chat",
+  temperature: 0.2,
+  maxTokens: 1200,
+  topP: 0.9,
+};
+
 export default function SettingsModal({ isOpen, onClose, onSave }: Props) {
-  const [config, setConfig] = useState<LLMConfig>(loadConfig());
+  const [config, setConfig] = useState<LLMConfig>(DEFAULTS);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    if (isOpen) setConfig(loadConfig());
-  }, [isOpen]);
+    setMounted(true);
+    setConfig(loadConfig());
+  }, []);
 
-  if (!isOpen) return null;
+  useEffect(() => {
+    if (isOpen && mounted) setConfig(loadConfig());
+  }, [isOpen, mounted]);
+
+  if (!isOpen || !mounted) return null;
 
   const handleSave = () => {
     saveConfig(config);
@@ -96,16 +111,10 @@ export default function SettingsModal({ isOpen, onClose, onSave }: Props) {
         </div>
 
         <div className="flex gap-3 justify-end">
-          <button
-            onClick={onClose}
-            className="px-4 py-2 text-sm text-gray-600 hover:text-gray-800 transition-colors"
-          >
+          <button onClick={onClose} className="px-4 py-2 text-sm text-gray-600 hover:text-gray-800 transition-colors">
             取消
           </button>
-          <button
-            onClick={handleSave}
-            className="px-4 py-2 text-sm bg-red-700 text-white rounded-lg hover:bg-red-600 transition-colors"
-          >
+          <button onClick={handleSave} className="px-4 py-2 text-sm bg-red-700 text-white rounded-lg hover:bg-red-600 transition-colors">
             保存
           </button>
         </div>
