@@ -18,12 +18,19 @@ def main():
     p.add_argument("--max-pages", type=int, default=None)
     p.add_argument("--crawl-delay", type=float, default=1.1)
     p.add_argument("--timeout", type=int, default=30)
-    p.add_argument("--progress-every", type=int, default=25)
+    p.add_argument("--progress-every", type=int, default=100)
     p.add_argument("--resume", action="store_true")
+    p.add_argument("--seed", action="append", dest="seeds", default=None,
+                   help="extra seed URL, use multiple times")
     args = p.parse_args()
+
+    seeds = None
+    if args.seeds:
+        seeds = list(args.seeds)
 
     summary = crawl(
         out_dir=args.out,
+        seeds=seeds,
         max_pages=args.max_pages,
         crawl_delay=args.crawl_delay,
         timeout=args.timeout,
