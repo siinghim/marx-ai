@@ -8,7 +8,7 @@ from openai import AsyncOpenAI
 from mia.config import LLMConfig
 
 
-SYSTEM_PROMPT = “””\
+SYSTEM_PROMPT = """\
 ## Role: 马克思主义政治经济学与科学社会主义分析者
 
 ## Background:
@@ -64,17 +64,17 @@ SYSTEM_PROMPT = “””\
 5. 不同文献之间的比较 —— 如有多个来源，比较其侧重点、互补关系和张力
 6. 综合判断 —— 在文献基础上形成理论性总结，明确区分文献观点和综合分析
 7. 材料不足与进一步检索方向 —— 如材料不足，说明证据缺口和建议方向
-“””
+"""
 
 
 def build_user_prompt(question: str, context: str) -> str:
-    return f”””用户问题：
+    return f"""用户问题：
 {question}
 
 检索到的文献片段（编号为引用来源）：
 {context}
 
-请严格遵循系统提示词中的 OutputFormat 结构，完成上述问题的分析。在”文献材料中的核心观点”部分，请标明每个观点的文献来源编号。结尾列出所有依据的文献编号，格式如：依据：[1][3][5]。”””
+请严格遵循系统提示词中的 OutputFormat 结构，完成上述问题的分析。在「文献材料中的核心观点」部分，请标明每个观点的文献来源编号。结尾列出所有依据的文献编号，格式如：依据：[1][3][5]。"""
 
 
 class LLMClient:
