@@ -24,7 +24,7 @@ async def lifespan(app: FastAPI):
     yield
 
 
-app = FastAPI(title="Marx AI", lifespan=lifespan)
+app = FastAPI(title="Spectre", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,

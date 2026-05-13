@@ -23,7 +23,7 @@ export default function ChatPanel({ sessionId, llmConfig }: Props) {
           {!sessionId && (
             <div className="text-center text-gray-400 mt-20">
               <div className="text-6xl mb-4">★</div>
-              <p className="text-lg">Marx AI — 马克思主义政治经济学知识库</p>
+              <p className="text-lg">Spectre — 马克思主义政治经济学智能问答系统</p>
               <p className="text-sm mt-2">点击左侧"新对话"开始提问</p>
             </div>
           )}
