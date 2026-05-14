@@ -1,0 +1,7 @@
+# Spectre offline rebuild — CUDA 12.1
+# Install order: torch first (CUDA 12.1), then others
+torch>=2.5,<2.7
+sentence-transformers>=3.0
+faiss-gpu>=1.8
+numpy>=1.26,<2.0
+tqdm>=4.66
